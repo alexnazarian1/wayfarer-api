@@ -14,7 +14,7 @@ const index = (req, res) => {
 };
 
 const show = (req, res) => {
-  db.City.findById(req.params.id, (err, foundCity) => {
+  db.City.findOne({ urlName: req.params.cityName }, (err, foundCity) => {
     if (err) {return handleError(res, err, 'Error in cities#show:')};
     if (!foundCity) {return res.json({ message: 'City not found in database' })};
     res.json({ city: foundCity });
@@ -22,23 +22,24 @@ const show = (req, res) => {
 };
 
 const create = (req, res) => {
-    // Validations??
-  db.City.create(req.body, (err, savedCity) => {
-    if (err) {return handleError(res, err, 'Error in cities#create:')};
-    res.status(201).json({ city: savedCity });
-  });
+    const cityUrl = req.body.name.split(' ').join('-').toLowerCase();
+    req.body.urlName = cityUrl;
+    db.City.create(req.body, (err, savedCity) => {
+        if (err) {return handleError(res, err, 'Error in cities#create:')};
+        res.status(201).json({ city: savedCity });
+    });
 };
 
 const update = (req, res) => {
     // Validations??
-  db.City.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedCity) => {
+  db.City.findOneAndUpdate({ urlName: req.params.cityName }, req.body, {new: true}, (err, updatedCity) => {
     if (err) {return handleError(res, err, 'Error in cities#update:')};
     res.status(201).json({ city: updatedCity });
   });
 };
 
 const destroy = (req, res) => {
-  db.City.findByIdAndDelete(req.params.id, (err, deletedCity) => {
+  db.City.findOneAndDelete({ urlName: req.params.cityName }, (err, deletedCity) => {
     if (err) {return handleError(res, err, 'Error in cities#destroy:')};
     res.json({ city: deletedCity});
   });

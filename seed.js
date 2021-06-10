@@ -1,7 +1,6 @@
 const db = require('./models');
 const data = require('./cityData.json');
 const userData = require('./userData.json');
-const postData = require('./postData.json');
 
 function handleError(err) {
   console.log(err);
