@@ -1,5 +1,5 @@
 const express = require('express');
-// const routes = require('./routes');
+const routes = require('./routes');
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 // middleware - API routes
-// app.use('/api/v1/cities', routes.cities);
+app.use('/api/v1/cities', routes.cities);
 // app.use('/api/v1/users', routes.users);
 // app.use('/api/v1/posts', routes.posts);
 // app.use('/api/v1/comments', routes.comments);
