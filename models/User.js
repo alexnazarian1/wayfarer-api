@@ -6,9 +6,9 @@ const UserSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'City',
     },
-    username: {type: String, unique=true, required=true},
-    password: {type: String, required=true},
-    email: {type: String, unique=true, required=true},
+    username: {type: String, unique:true, required:true},
+    password: {type: String, required:true},
+    email: {type: String, unique:true, required:true},
     profilePic: String,
 }, {timestamps: true});
 
