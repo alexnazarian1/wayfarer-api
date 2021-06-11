@@ -1,6 +1,6 @@
 module.exports = {
     cities: require('./citiesRoutes'),
-    // users: require('./usersRoutes'),
+    users: require('./usersRoutes'),
     // posts: require('./postsRoutes'),
     // comments: require('./commentsRoutes'),
   };
