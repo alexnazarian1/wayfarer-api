@@ -46,6 +46,8 @@ seedData = async () => {
       await user.save();
       seededPosts[i].comments.push(seededComments[i]._id);
       await seededPosts[i].save();
+      seededComments[i].post = seededPosts[i]._id;
+      await seededComments[i].save();
     }
     console.log(seededComments.length, 'comments created successfully');
     console.log('comments done!');
