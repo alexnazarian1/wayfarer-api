@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/api/v1/cities', routes.cities);
 app.use('/api/v1/users', routes.users);
 app.use('/api/v1/posts', routes.posts);
-// app.use('/api/v1/comments', routes.comments);
+app.use('/api/v1/comments', routes.comments);
 
 // middleware - error handling
 app.use((err, req, res, next) => {

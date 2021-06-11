@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const CitySchema = new Schema( {
     name: {type: String, required: true, unique: true},
     photo: {type: String, required: true},
+    country: {type: String, required: true},
     urlName: {type: String, unique: true},
     posts: [
         {
