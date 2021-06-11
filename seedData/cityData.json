@@ -3,27 +3,32 @@
       {
         "name": "San Francisco",
         "photo": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
-        "urlName": "san-francisco"
+        "urlName": "san-francisco",
+        "country": "United States"
       },
       {
         "name": "San Diego",
         "photo": "https://images.unsplash.com/photo-1519954352454-2d5a7353e277?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=968&q=80",
-        "urlName": "san-diego"
+        "urlName": "san-diego",
+        "country": "United States"
       },
       {
         "name": "New York City",
         "photo": "https://images.unsplash.com/photo-1528916282053-c83897a7063c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "urlName": "new-york-city"
+        "urlName": "new-york-city",
+        "country": "United States"
       },
       {
         "name": "Seattle",
         "photo": "https://images.unsplash.com/photo-1608796128659-b1be2e6fdab3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        "urlName": "seattle"
+        "urlName": "seattle",
+        "country": "United States"
       },
       {
         "name": "Nashville",
         "photo": "https://images.unsplash.com/photo-1556033681-83abea291a96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1131&q=80",
-        "urlName": "nashville"
+        "urlName": "nashville",
+        "country": "United States"
       }
     ]
   }
