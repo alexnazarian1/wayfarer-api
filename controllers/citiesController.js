@@ -69,12 +69,12 @@ const destroy = async (req, res, next) => {
       const user = await db.User.findOne({ username: post.user });
       user.posts.remove(post._id);
       await user.save();
-    });
-    deletedCity.posts[0].comments.forEach(async comment => {
-      await db.Comment.findByIdAndDelete(comment._id);
-      const user = await db.User.findOne({ username: comment.user });
-      user.comments.remove(comment._id);
-      await user.save();
+      post.comments.forEach(async comment => {
+        await db.Comment.findByIdAndDelete(comment._id);
+        const user = await db.User.findOne({ username: comment.user});
+        user.comments.remove(comment._id);
+        await user.save();
+      });
     });
     res.json({ city: deletedCity });
   } catch (err) {
