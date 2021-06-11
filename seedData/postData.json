@@ -1,0 +1,22 @@
+{
+    "posts": [
+      {
+        "city": "San Francisco",
+        "user": "dorothy",
+        "body": "What a beautiful city! I had a wonderful time.",
+        "title": "Amazing place!"
+      },
+      {
+        "city": "Seattle",
+        "user": "austin",
+        "body": "It rained the whole time and smelled terrible.",
+        "title": "AWFUL"
+      },
+      {
+        "city": "Nashville",
+        "user": "elissa",
+        "body": "it was fine",
+        "title": "Meh"
+      }
+    ]
+  }
