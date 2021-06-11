@@ -4,8 +4,8 @@ const routes = require('./routes');
 const PORT = process.env.PORT || 4000;
 const app = express();
 
-// const cors = require('cors');
-// app.use(cors())
+const cors = require('cors');
+app.use(cors())
 
 // middleware - JSON parsing
 app.use(express.json());
