@@ -64,14 +64,12 @@ const destroy = async (req, res, next) => {
             city.posts.remove(post._id);
             await city.save();
             post.delete();
-
             post.comments.forEach(async comment => {
                 const user = await db.User.findOne({ username: comment.user });
                 user.comments.remove(comment._id);
                 await user.save();
                 await db.Comment.findByIdAndDelete({ _id: comment._id });
             })
-
         });
         const userCommentsToDelete = deletedUser.comments;
         userCommentsToDelete.forEach(async comment => {
