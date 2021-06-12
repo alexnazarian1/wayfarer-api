@@ -24,14 +24,15 @@ const show = async (req, res, next) => {
 
 const create = async (req, res, next) => {
     try {
-        const city = await db.City.findOne({ name: req.body.city });
-        const user = await db.User.findOne({ username: req.body.user });
-        if (!city || !user) return res.json({ message: 'City or User not found in database' });
+        const city = await db.City.findById({ _id: req.body.cityId });
+        req.body.city = city.name;
+        // const user = await db.User.findOne({ username: req.body.user });
+        // if (!city || !user) return res.json({ message: 'City or User not found in database' });
         const newPost = await db.Post.create(req.body);
         city.posts.push(newPost._id);
-        user.posts.push(newPost._id);
         await city.save();
-        await user.save();
+        // user.posts.push(newPost._id);
+        // await user.save();
         res.status(201).json({ post: newPost });
     } catch (err) {
         next(err);

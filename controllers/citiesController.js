@@ -2,7 +2,8 @@ const db = require('../models');
 
 const index = async (req, res, next) => {
   try {
-    const foundCities = await db.City.find({});
+    const foundCities = await db.City.find({})
+      .populate('posts');
     if (foundCities.length === 0) return res.json({ message: 'No cities in database' });
     res.json({ cities: foundCities })
   }
