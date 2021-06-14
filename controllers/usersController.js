@@ -31,8 +31,9 @@ const show = async (req, res, next) => {
 const login = async (req, res, next) => {
     try {
         const foundUser = await db.User.findOne({ username: req.body.user });
-        if (!foundUser) return res.json({ message: 'Authentication failed' })
-        if (foundUser.password === req.body.password) {
+        if (!foundUser) return res.json({ message: 'Authentication failed' });
+        const match = await bcrypt.compare(req.body.password, foundUser.password);
+        if (match) {
             if (foundUser.isAdmin) {
                 res.json({ authedUser: foundUser.username, 
                     isAdmin: true,
