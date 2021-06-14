@@ -1,5 +1,8 @@
 const db = require('../models');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const index = async (req, res, next) => {
     try {
         const foundUsers = await db.User.find({});
@@ -25,9 +28,31 @@ const show = async (req, res, next) => {
     }
 }
 
+const login = async (req, res, next) => {
+    try {
+        const foundUser = await db.User.findOne({ username: req.body.user });
+        if (!foundUser) return res.json({ message: 'Authentication failed' })
+        if (foundUser.password === req.body.password) {
+            if (foundUser.isAdmin) {
+                res.json({ authedUser: foundUser.username, 
+                    isAdmin: true,
+                });
+            } else {
+                res.json( { authedUser: foundUser.username });
+            };
+        } else {
+            res.json( { message: 'Authentication failed '});
+        };
+    } catch (err) {
+        next(err);
+    }
+}
+
 const create = async (req, res, next) => {
     try {
         req.body.username = req.body.username.replace(/[^a-zA-Z1-9]/g, "");
+        const hashedPw = await bcrypt.hash(req.body.password, saltRounds);
+        req.body.password = hashedPw;
         const savedUser = await db.User.create(req.body);
         res.status(201).json({ user: savedUser });
     } catch (err) {
@@ -87,6 +112,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
     index,
     show,
+    login,
     create,
     update,
     destroy,

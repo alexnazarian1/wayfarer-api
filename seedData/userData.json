@@ -3,22 +3,26 @@
       {
         "username": "dorothy",
         "password": "password",
-        "email": "email@email.com"
+        "email": "email@email.com",
+        "isAdmin": true
       },
       {
         "username": "elissa",
         "password": "password",
-        "email": "email1@email.com"
+        "email": "email1@email.com",
+        "isAdmin": true
       },
       {
         "username": "austin",
         "password": "password",
-        "email": "email2@email.com"
+        "email": "email2@email.com",
+        "isAdmin": true
       },
       {
         "username": "alex",
         "password": "password",
-        "email": "email3@email.com"
+        "email": "email3@email.com",
+        "isAdmin": true
       },
       {
         "username": "michael",

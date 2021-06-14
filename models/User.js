@@ -22,6 +22,7 @@ const UserSchema = new Schema({
     password: {type: String, required:true},
     email: {type: String, unique:true, required:true},
     profilePic: String,
+    isAdmin: {type: Boolean, default: false},
 }, {timestamps: true});
 
 const User = mongoose.model('User', UserSchema);
