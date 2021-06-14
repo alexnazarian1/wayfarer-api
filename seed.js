@@ -4,6 +4,9 @@ const userData = require('./seedData/userData.json');
 const postData = require('./seedData/postData.json');
 const commentData = require('./seedData/commentData.json');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 seedData = async () => {
   try {
     const deletedCities = await db.City.deleteMany({})
@@ -16,8 +19,10 @@ seedData = async () => {
     console.log(deletedUsers.deletedCount,'user deleted');
     const cityId1 = seededCities[0]._id; // San Francisco
     const cityId2 = seededCities[3]._id; // Seattle
+    const hashedPw = await bcrypt.hash('password', saltRounds);
     userData.users.forEach((element, index)=> {
       index < 3 ? element.city = cityId1 : element.city = cityId2;
+      element.password = hashedPw;
     });
     const seededUsers = await db.User.create(userData.users);
     console.log(seededUsers.length, 'users created successfully');
