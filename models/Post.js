@@ -10,8 +10,8 @@ const PostSchema = new Schema({
         type: String,
         required: true,
     },
-    body: {type: String, min_length: 1},
-    title: {type: String, min_length: 1, max_length: 200},
+    body: {type: String, required: true},
+    title: {type: String, required: true, maxLength: 200},
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,

@@ -10,7 +10,7 @@ const CommentSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
     },
-    body: {type: String, min_length: 1},
+    body: {type: String, required: true},
 }, {timestamps: true});
 
 const Comment = mongoose.model('Comment', CommentSchema);
