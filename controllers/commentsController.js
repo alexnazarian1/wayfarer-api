@@ -23,15 +23,14 @@ const show = async (req, res, next) => {
 const create = async (req, res, next) => {
     try {
         const post = await db.Post.findById({ _id: req.body.post});
-        // const user = await db.User.findOne({ username: req.body.user });
-        // if (!post || !user) return res.json({ mesage: 'Post or User not found in database' });
-        if (!post) return res.json({ mesage: 'Post not found in database' });
+        const user = await db.User.findOne({ username: req.body.user });
+        if (!post || !user) return res.json({ message: 'Post or User not found in database' });
         req.body.post = post._id;
         const newComment = await db.Comment.create(req.body);
         post.comments.push(newComment._id);
         await post.save();
-        // user.comments.push(newComment._id);
-        // await user.save();
+        user.comments.push(newComment._id);
+        await user.save();
         res.status(201).json({ comment: newComment });
     } catch (err) {
         next(err);

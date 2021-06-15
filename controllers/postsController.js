@@ -26,13 +26,13 @@ const create = async (req, res, next) => {
     try {
         const city = await db.City.findById({ _id: req.body.cityId });
         req.body.city = city.name;
-        // const user = await db.User.findOne({ username: req.body.user });
-        // if (!city || !user) return res.json({ message: 'City or User not found in database' });
+        const user = await db.User.findOne({ username: req.body.user });
+        if (!city || !user) return res.json({ message: 'City or User not found in database' });
         const newPost = await db.Post.create(req.body);
         city.posts.push(newPost._id);
         await city.save();
-        // user.posts.push(newPost._id);
-        // await user.save();
+        user.posts.push(newPost._id);
+        await user.save();
         res.status(201).json({ post: newPost });
     } catch (err) {
         next(err);
@@ -61,16 +61,16 @@ const destroy = async (req, res, next) => {
         const city = await db.City.findOne({ name: deletedPost.city });
         city.posts.remove(deletedPost._id);
         await city.save();
-        // const user = await db.User.findOne({ username: deletedPost.user });
-        // user.posts.remove(deletedPost._id);
-        // await user.save();
-        // const commentsToDelete = deletedPost.comments;
-        // commentsToDelete.forEach(async comment => {
-        //     const userComment = await db.User.findOne({ username: comment.user });
-        //     userComment.comments.remove(comment._id);
-        //     await userComment.save();
-        //     await db.Comment.findByIdAndDelete({ _id: comment._id });
-        // });
+        const user = await db.User.findOne({ username: deletedPost.user });
+        user.posts.remove(deletedPost._id);
+        await user.save();
+        const commentsToDelete = deletedPost.comments;
+        commentsToDelete.forEach(async comment => {
+            const userComment = await db.User.findOne({ username: comment.user });
+            userComment.comments.remove(comment._id);
+            await userComment.save();
+            await db.Comment.findByIdAndDelete({ _id: comment._id });
+        });
         res.json({ post: deletedPost });
     } catch (err) {
         next(err);
